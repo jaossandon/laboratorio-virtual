@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla Periódica - Laboratorio Virtual</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/estilo.css">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="../../index.html" class="brand">
+                <img src="../../img/lbph.png" alt="Logo Liceo Bicentenario Padre Alberto Hurtado" class="brand-logo">
+                <span class="brand-text">
+                    <span class="brand-name">Laboratorio Virtual</span>
+                    <span class="brand-school">Liceo Bicentenario Padre Alberto Hurtado</span>
+                </span>
+            </a>
+        </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL: HERRAMIENTA TRANSVERSAL -->
+    <main class="site-main">
+        <!-- Barra superior de la tabla periódica -->
+        <div class="top-bar">
+            <div class="logo-container">
+                <div class="header-titles">
+                    <h1 style="margin: 0; color: #6B1C2F;">Tabla Periódica Interactiva</h1>
+                    <span class="subtitle">Herramientas Transversales</span>
+                </div>
+            </div>
+            <div class="controls-container">
+                <div class="search-box">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <input type="text" id="searchInput" placeholder="Buscar por símbolo, nombre o Z..." autocomplete="off">
+                </div>
+                <div class="filter-dropdown">
+                    <select id="filterSelect">
+                        <option value="todos">Todas las Familias</option>
+                        <option value="no-metal">No Metales</option>
+                        <option value="gas-noble">Gases Nobles</option>
+                        <option value="alcalino">Alcalinos</option>
+                        <option value="alcalinoterreo">Alcalinotérreos</option>
+                        <option value="transicion">Metales de Transición</option>
+                        <option value="post-transicion">Metales Post-transición</option>
+                        <option value="metaloide">Metaloides</option>
+                        <option value="halogeno">Halógenos</option>
+                        <option value="lantanido">Lantánidos</option>
+                        <option value="actinido">Actínidos</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cuadrícula central donde Javascript inyecta las fichas -->
+        <div class="main-layout">
+            <div class="table-wrapper">
+                <div id="tabla-periodica"></div>
+            </div>
+        </div>
+
+        <!-- Panel lateral (Inspector) -->
+        <aside id="inspectorPanel" class="inspector-panel">
+            <button class="close-btn" id="closeInspector">&times;</button>
+            <div class="inspector-header">
+                <span id="elemZBadge" class="badge-z">Z = 1</span>
+                <h2 id="elemNameTitle">Hidrógeno</h2>
+                <p id="elemSymbolSubtitle" class="symbol-sub">H</p>
+            </div>
+            <div class="inspector-body">
+                <div class="data-grid">
+                    <div class="data-card">
+                        <span class="data-label">Masa Atómica</span>
+                        <span id="elemMasa" class="data-value">1.008 u</span>
+                    </div>
+                    <div class="data-card">
+                        <span class="data-label">Familia</span>
+                        <span id="elemFamilia" class="data-value">No Metal</span>
+                    </div>
+                </div>
+
+                <div class="section-container">
+                    <h3>Selección de Isótopos</h3>
+                    <p class="section-desc">Elige un isótopo para renderizar la estructura atómica en el simulador 3D.</p>
+                    <div id="isotoposList" class="isotopos-grid">
+                        <!-- Inyectado por JS -->
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Vista 3D a pantalla completa -->
+        <div id="canvasContainer" class="canvas-fullscreen">
+            <button class="btn-back" id="btnBackToTable">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                Volver a la Tabla
+            </button>
+            <div class="simulation-info" id="simulationInfo">
+                <h2 id="simTitle">Modelo Atómico</h2>
+                <p id="simDetails">Protones: 1 | Neutrones: 0 | Electrones: 1</p>
+            </div>
+        </div>
+
+        <!-- IMPORTACIÓN DE SCRIPTS JAVASCRIPT -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+        <script src="../../js/data.js"></script>
+        <script src="../../js/simulador3d.js"></script>
+        <script src="../../js/main.js"></script>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div>
+                <p class="footer-school">Liceo Bicentenario Padre Alberto Hurtado</p>
+                <p class="footer-copy">Laboratorio Virtual de Ciencias Exactas · 2026</p>
+            </div>
+            <div class="footer-logos">
+                <img src="../../img/slep.jpeg" alt="SLEP" class="partner-logo">
+                <img src="../../img/sna.jpeg" alt="SNA" class="partner-logo">
+                <img src="../../img/fc.jpeg" alt="Collahuasi" class="partner-logo">
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

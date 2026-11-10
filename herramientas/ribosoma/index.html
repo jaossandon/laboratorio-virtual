@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fábrica de proteínas - Laboratorio Virtual</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/estilo.css">
+    <link rel="stylesheet" href="ribosoma.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="../../index.html" class="brand">
+                <img src="../../img/lbph.png" alt="Logo Liceo Bicentenario Padre Alberto Hurtado" class="brand-logo">
+                <span class="brand-text">
+                    <span class="brand-name">Laboratorio Virtual</span>
+                    <span class="brand-school">Liceo Bicentenario Padre Alberto Hurtado</span>
+                </span>
+            </a>
+        </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL: HERRAMIENTA TRANSVERSAL -->
+    <main class="site-main">
+        <div class="container">
+
+            <nav class="breadcrumb">
+                <a href="../../index.html">Inicio</a>
+                <span class="sep">›</span>
+                <a href="../../index.html#herramientas">Herramientas</a>
+                <span class="sep">›</span>
+                <span>Fábrica de proteínas</span>
+            </nav>
+
+            <section class="page-head">
+                <span class="tag">Herramienta transversal</span>
+                <h1 class="page-title">Fábrica de proteínas: del ADN a la proteína</h1>
+                <p class="page-desc">Dirige tú la síntesis de proteínas: transcribe un gen de ADN a ARNm en el núcleo y luego tradúcelo en el ribosoma, aminoácido por aminoácido.</p>
+            </section>
+
+            <!-- INSTRUCCIONES -->
+            <details class="fab-instrucciones" open>
+                <summary>¿Cómo se usa? <span>(haz clic aquí para ocultar o mostrar)</span></summary>
+                <ol>
+                    <li><strong>Inicia la transcripción (núcleo).</strong> Haz clic en la hélice de ADN o en el botón "Iniciar transcripción". La <strong>ARN polimerasa</strong> se une al gen y separa las dos hebras del ADN.</li>
+                    <li><strong>Copia la hebra molde.</strong> La posición que se copia brilla y aparece un hueco dorado. Haz clic en el nucleótido de ARN complementario: <strong>A del ADN con U</strong>, <strong>T con A</strong>, <strong>G con C</strong> y <strong>C con G</strong>. Ojo: el ARN no tiene timina (T). Si quieres, "Completar transcripción" termina el resto solo.</li>
+                    <li><strong>Lleva el ARNm al ribosoma.</strong> Presiona "Llevar el ARNm al ribosoma": el ARNm se separa del ADN, el ADN se vuelve a cerrar y el ARNm sale del núcleo hacia el citoplasma.</li>
+                    <li><strong>Ensambla el ribosoma.</strong> Haz clic en el ribosoma o en el botón "Ensamblar ribosoma". La subunidad mayor y la menor se unen sobre el ARNm, y el primer ARNt trae <strong>Metionina (Met)</strong> al codón de inicio <strong>AUG</strong>, en el sitio P.</li>
+                    <li><strong>Elige el ARNt correcto.</strong> El codón del sitio A brilla. Haz clic en el ARNt cuyo anticodón sea complementario a ese codón: <strong>A con U</strong> y <strong>G con C</strong>. Cada ARNt trae un aminoácido distinto.</li>
+                    <li><strong>Forma el enlace peptídico.</strong> Presiona "Formar enlace peptídico": la cadena de aminoácidos pasa al aminoácido recién llegado y queda unida a él por un enlace peptídico.</li>
+                    <li><strong>Avanza el ribosoma.</strong> Presiona "Avanzar el ribosoma": se mueve un codón (3 nucleótidos) sobre el ARNm. El ARNt vacío sale por el sitio E y el sitio A queda libre para el siguiente codón.</li>
+                    <li><strong>Termina la proteína.</strong> Repite los pasos 5 a 7. Cuando llegue un codón de término (<strong>UAA</strong>, <strong>UAG</strong> o <strong>UGA</strong>), ningún ARNt calza: elige el <strong>factor de liberación</strong> para soltar la proteína.</li>
+                    <li><strong>Explora.</strong> Arrastra la escena para girarla y usa la rueda del mouse para acercar. "Ver automático" hace todo el proceso solo. Más abajo puedes escribir tu propio ARNm o probar el modo mutación.</li>
+                </ol>
+            </details>
+
+            <!-- SIMULADOR 3D DEL RIBOSOMA -->
+            <section class="fab" id="fabrica">
+                <div class="fab-escena">
+                    <div class="fab-lienzo" id="contenedor-lienzo"></div>
+                    <span class="fab-ayuda">Arrastra para girar · Rueda para acercar</span>
+                </div>
+
+                <div class="fab-controles">
+                    <button class="fab-btn" id="btn-accion">Ensamblar ribosoma</button>
+                    <button class="fab-btn secundario" id="btn-reiniciar">Reiniciar</button>
+                    <button class="fab-btn secundario" id="btn-vista">Centrar vista</button>
+                    <label class="fab-check"><input type="checkbox" id="modo-auto"> Ver automático</label>
+                    <label class="fab-velocidad">Velocidad
+                        <input type="range" id="rango-velocidad" min="0.5" max="2" step="0.25" value="1">
+                        <output id="valor-velocidad">1×</output>
+                    </label>
+                    <span class="fab-puntaje" id="puntaje">Elecciones correctas: 0 de 0</span>
+                </div>
+
+                <p class="fab-estado" id="estado">Cargando simulador...</p>
+
+                <div class="fab-secuencia">
+                    <label for="entrada-arnm">Escribe tu propio ARNm (letras A, U, G y C):</label>
+                    <div class="fab-fila">
+                        <input type="text" id="entrada-arnm" value="GCAUGUUCGGAAAAUGGCACUAAGCA" maxlength="70" spellcheck="false" autocomplete="off">
+                        <button class="fab-btn" id="btn-secuencia">Usar esta secuencia</button>
+                        <button class="fab-btn secundario" id="btn-azar">Secuencia al azar</button>
+                    </div>
+                    <p class="fab-nota" id="nota-secuencia">El ribosoma empieza a leer en el primer <strong>AUG</strong> y avanza de 3 en 3 hasta un codón de término (<strong>UAA</strong>, <strong>UAG</strong> o <strong>UGA</strong>).</p>
+                </div>
+
+                <div class="fab-proteina">
+                    <span>Proteína en formación:</span>
+                    <strong id="proteina">—</strong>
+                </div>
+
+                <div class="fab-leyenda">
+                    <span><b class="base a">A</b> Adenina</span>
+                    <span><b class="base u">U</b> Uracilo</span>
+                    <span><b class="base g">G</b> Guanina</span>
+                    <span><b class="base c">C</b> Citosina</span>
+                    <span><b class="base t">T</b> Timina (solo en el ADN)</span>
+                    <span><b class="pieza polimerasa"></b> ARN polimerasa</span>
+                    <span><b class="pieza arnt"></b> ARNt</span>
+                    <span><b class="pieza aa"></b> Aminoácido</span>
+                </div>
+            </section>
+
+            <!-- MODO MUTACIÓN -->
+            <section class="fab mut" id="mutacion">
+                <h2 class="mut-titulo">Modo mutación</h2>
+                <p class="mut-intro">Una <strong>mutación</strong> es un cambio en la secuencia de nucleótidos del <strong>ADN</strong>. Descubre cómo un solo cambio en un gen puede (o no) cambiar la proteína.</p>
+                <ol class="mut-pasos">
+                    <li><strong>Cambia una letra del ADN:</strong> abajo está el gen con sus dos hebras. Haz clic en una letra de la <strong>hebra codificante</strong> (fila de arriba); cada clic la cambia: A → T → G → C. La <strong>hebra molde</strong> (fila de abajo) cambia sola, porque siempre es complementaria. Los tripletes están separados en grupos de 3; el dorado es el de inicio y el gris, el de término.</li>
+                    <li><strong>Compara:</strong> presiona "Comparar proteínas" para ver la proteína original y la mutada. Los aminoácidos que cambiaron se marcan en rojo.</li>
+                    <li><strong>Interpreta:</strong> lee qué tipo de mutación ocurrió (silenciosa, de cambio de sentido, sin sentido…) y por qué.</li>
+                    <li><strong>Fabrícala:</strong> presiona "Fabricar la proteína mutada". La escena 3D vuelve al ADN: transcribe el gen y luego arma la proteína en el ribosoma.</li>
+                </ol>
+
+                <p class="mut-guia">Arriba: hebra codificante (haz clic para mutar) · Abajo: hebra molde (cambia sola)</p>
+                <div class="mut-secuencia" id="mut-secuencia"></div>
+
+                <div class="fab-controles">
+                    <button class="fab-btn" id="mut-comparar">Comparar proteínas</button>
+                    <button class="fab-btn secundario" id="mut-deshacer">Deshacer cambios</button>
+                    <button class="fab-btn secundario" id="mut-fabricar">Fabricar la proteína mutada</button>
+                </div>
+
+                <div class="mut-resultado" id="mut-resultado"></div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div>
+                <p class="footer-school">Liceo Bicentenario Padre Alberto Hurtado</p>
+                <p class="footer-copy">Laboratorio Virtual de Ciencias Exactas · 2026</p>
+            </div>
+            <div class="footer-logos">
+                <img src="../../img/slep.jpeg" alt="SLEP" class="partner-logo">
+                <img src="../../img/sna.jpeg" alt="SNA" class="partner-logo">
+                <img src="../../img/fc.jpeg" alt="Collahuasi" class="partner-logo">
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="ribosoma.js"></script>
+    <script src="mutacion.js"></script>
+
+</body>
+</html>
+

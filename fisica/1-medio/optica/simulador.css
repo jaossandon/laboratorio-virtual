@@ -1,0 +1,400 @@
+/* =========================================
+   SIMULADOR: FORMACIÓN DE IMÁGENES
+   ========================================= */
+
+.sim {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+}
+
+.sim-layout {
+    display: grid;
+    grid-template-columns: 290px 1fr;
+    gap: 24px;
+}
+
+/* --- Panel de control --- */
+.sim-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.sim-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sim-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #475569;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sim-label output {
+    font-size: 0.85rem;
+    color: #6B1C2F;
+    background: #f6efe0;
+    padding: 2px 8px;
+    border-radius: 6px;
+}
+
+.sim-segment {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+}
+
+.sim-segment button {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 9px 8px;
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
+    color: #334155;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.sim-segment button:last-child {
+    grid-column: span 2;
+}
+
+.sim-segment button:hover {
+    border-color: #6B1C2F;
+}
+
+.sim-segment button.activo {
+    background: #6B1C2F;
+    border-color: #6B1C2F;
+    color: #ffffff;
+}
+
+.sim input[type="range"] {
+    width: 100%;
+    accent-color: #6B1C2F;
+    cursor: pointer;
+}
+
+.sim-group.deshabilitado {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.sim-check {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: #334155;
+    cursor: pointer;
+}
+
+.sim-check input {
+    accent-color: #6B1C2F;
+    width: 16px;
+    height: 16px;
+}
+
+.dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.dot.r1 { background: #F59E0B; }
+.dot.r2 { background: #8B5CF6; }
+.dot.r3 { background: #0EA5E9; }
+.dot.objeto { background: #10B981; }
+.dot.imagen { background: #DC2626; }
+
+.sim-tip {
+    font-size: 0.82rem;
+    color: #64748b;
+    background: #f8fafc;
+    border: 1px dashed #cbd5e1;
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* --- Escenario --- */
+.sim-stage {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.sim-canvas-wrap {
+    width: 100%;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #f8fafc;
+}
+
+#lienzo {
+    display: block;
+    width: 100%;
+    touch-action: none;
+}
+
+.sim-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    font-size: 0.82rem;
+    color: #475569;
+}
+
+.sim-legend span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.linea-virtual {
+    display: inline-block;
+    width: 22px;
+    border-top: 2px dashed #64748b;
+}
+
+/* --- Resultados --- */
+.sim-results {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+}
+
+.sim-chip {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.sim-chip span {
+    font-size: 0.72rem;
+    color: #64748b;
+    font-weight: 600;
+}
+
+.sim-chip strong {
+    font-size: 1rem;
+    color: #1e293b;
+}
+
+.sim-ecuacion {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #334155;
+    background: #fdfbf7;
+    border-left: 4px solid #D4AF37;
+    padding: 10px 14px;
+    border-radius: 6px;
+}
+
+/* --- Botones --- */
+.btn-principal,
+.btn-secundario {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-principal {
+    background: #6B1C2F;
+    color: #ffffff;
+    border: 1px solid #6B1C2F;
+}
+
+.btn-principal:hover {
+    background: #4A1220;
+}
+
+.btn-secundario {
+    background: #ffffff;
+    color: #6B1C2F;
+    border: 1px solid #6B1C2F;
+}
+
+.btn-secundario:hover {
+    background: #f6efe0;
+}
+
+.sim-acciones {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* --- Modo desafío --- */
+.sim-desafio {
+    background: #fdfbf7;
+    border: 1px solid #e9d9a6;
+    border-radius: 10px;
+    padding: 18px;
+}
+
+.sim-desafio h3 {
+    margin: 0 0 12px 0;
+    color: #6B1C2F;
+    font-size: 1rem;
+}
+
+.sim-pregunta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.sim-pregunta span {
+    width: 100px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #334155;
+}
+
+.sim-pregunta button {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 7px 14px;
+    border-radius: 20px;
+    border: 1px solid #cbd5e1;
+    background: #ffffff;
+    color: #334155;
+    cursor: pointer;
+}
+
+.sim-pregunta button.elegido {
+    background: #6B1C2F;
+    border-color: #6B1C2F;
+    color: #ffffff;
+}
+
+.sim-pregunta button.correcto {
+    background: #10B981;
+    border-color: #10B981;
+    color: #ffffff;
+}
+
+.sim-pregunta button.incorrecto {
+    background: #DC2626;
+    border-color: #DC2626;
+    color: #ffffff;
+}
+
+.sim-desafio-acciones {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-top: 6px;
+}
+
+.sim-puntaje {
+    margin-left: auto;
+    font-weight: 700;
+    color: #8a6d14;
+}
+
+.sim-feedback {
+    margin: 10px 0 0 0;
+    font-size: 0.9rem;
+    color: #334155;
+}
+
+/* --- Situaciones reales --- */
+.sim-situaciones {
+    margin-top: 24px;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 20px;
+}
+
+.sim-situaciones h3 {
+    margin: 0 0 12px 0;
+    color: #6B1C2F;
+    font-size: 1rem;
+}
+
+.sim-situaciones-botones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.sim-situaciones-botones button {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid #b8952a;
+    background: #ffffff;
+    color: #8a6d14;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.sim-situaciones-botones button:hover,
+.sim-situaciones-botones button.activo {
+    background: #D4AF37;
+    border-color: #D4AF37;
+    color: #1e293b;
+}
+
+.sim-situacion-texto {
+    margin: 14px 0 0 0;
+    color: #334155;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+/* --- Pantallas pequeñas --- */
+@media (max-width: 1000px) {
+    .sim-layout { grid-template-columns: 1fr; }
+    .sim-results { grid-template-columns: repeat(2, 1fr); }
+    /* En tablet y celular el dibujo va primero y los controles debajo */
+    .sim-stage { order: -1; }
+}
+
+@media (max-width: 700px) {
+    .sim { padding: 16px; }
+}
+
+/* --- Celulares --- */
+@media (max-width: 600px) {
+    .sim { padding: 12px; }
+    .sim-segment button { padding: 11px 6px; font-size: 0.8rem; }
+    .sim-check { padding: 4px 0; }
+    .sim-check input { width: 20px; height: 20px; }
+    .sim input[type="range"] { height: 28px; }
+    .sim-legend { gap: 12px; }
+    .sim-chip { padding: 8px 10px; }
+    .sim-chip strong { font-size: 0.95rem; }
+    .sim-acciones .btn-principal { width: 100%; }
+    .sim-pregunta span { width: 100%; }
+    .sim-pregunta button { padding: 9px 14px; }
+    .sim-puntaje { margin-left: 0; width: 100%; }
+}

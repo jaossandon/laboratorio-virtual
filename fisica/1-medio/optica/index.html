@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formación de imágenes - Laboratorio Virtual</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/estilo.css">
+    <link rel="stylesheet" href="simulador.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="../../../index.html" class="brand">
+                <img src="../../../img/lbph.png" alt="Logo Liceo Bicentenario Padre Alberto Hurtado" class="brand-logo">
+                <span class="brand-text">
+                    <span class="brand-name">Laboratorio Virtual</span>
+                    <span class="brand-school">Liceo Bicentenario Padre Alberto Hurtado</span>
+                </span>
+            </a>
+        </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL: ANIMACIÓN CON OA -->
+    <main class="site-main">
+        <div class="container">
+
+            <nav class="breadcrumb">
+                <a href="../../../index.html">Inicio</a>
+                <span class="sep">›</span>
+                <span>Física</span>
+                <span class="sep">›</span>
+                <a href="../index.html">1° Medio</a>
+                <span class="sep">›</span>
+                <span>Formación de imágenes</span>
+            </nav>
+
+            <section class="page-head">
+                <span class="tag">Física · 1° Medio · Unidad 2: Luz y óptica geométrica</span>
+                <h1 class="page-title">Formación de imágenes en espejos y lentes</h1>
+            </section>
+
+            <!-- FICHA DE LA CLASE -->
+            <section class="lesson-grid">
+                <article class="lesson-card">
+                    <h2>Objetivo de Aprendizaje · OA 11</h2>
+                    <p>Explicar fenómenos luminosos, como la reflexión, la refracción, la interferencia y el efecto Doppler, entre otros, por medio de la experimentación y el uso de modelos, considerando:</p>
+                    <ul>
+                        <li>Los modelos corpuscular y ondulatorio de la luz.</li>
+                        <li>Las características y la propagación de la luz (viaja en línea recta, formación de sombras y posee rapidez, entre otras).</li>
+                        <li class="destacado">La formación de imágenes (espejos y lentes).</li>
+                        <li>La formación de colores (difracción, colores primarios y secundarios, filtros).</li>
+                        <li class="destacado">Sus aplicaciones tecnológicas (lentes, telescopio, prismáticos y focos, entre otros).</li>
+                    </ul>
+                </article>
+                <article class="lesson-card objetivo">
+                    <div class="objetivo-cabecera">
+                        <h2>Objetivo de la clase</h2>
+                        <button type="button" class="btn-copiar" data-copiar="texto-objetivo">Copiar</button>
+                    </div>
+                    <div id="texto-objetivo">
+                        <p class="objetivo-frase"><span class="obj-habilidad">Explicar</span> <span class="obj-contenido">cómo se forman las imágenes en espejos y lentes usando el modelo de rayos, identificando si la imagen es real o virtual, derecha o invertida, y mayor o menor que el objeto,</span> <span class="obj-actitud">mostrando curiosidad e interés por comprender los fenómenos del entorno natural y tecnológico.</span></p>
+                        <ul class="objetivo-leyenda">
+                            <li class="ley-habilidad">Habilidad</li>
+                            <li class="ley-contenido">Contenido</li>
+                            <li class="ley-actitud">Actitud</li>
+                        </ul>
+                        <p class="indicador"><strong>Indicador:</strong> Realizan experimentos de óptica geométrica para explicar la reflexión de la luz y la formación de imágenes en espejos planos, cóncavos y convexos, y la refracción de la luz y la formación de imágenes a través de lentes.</p>
+                    </div>
+                </article>
+            </section>
+
+            <!-- SIMULADOR -->
+            <section class="sim">
+                <div class="sim-layout">
+
+                    <!-- Panel de control -->
+                    <aside class="sim-panel">
+                        <div class="sim-group">
+                            <span class="sim-label">Instrumento</span>
+                            <div class="sim-segment" id="instrumentos">
+                                <button data-tipo="lente-conv" class="activo">Lente convergente</button>
+                                <button data-tipo="lente-div">Lente divergente</button>
+                                <button data-tipo="espejo-conc">Espejo cóncavo</button>
+                                <button data-tipo="espejo-conv">Espejo convexo</button>
+                                <button data-tipo="espejo-plano">Espejo plano</button>
+                            </div>
+                        </div>
+
+                        <div class="sim-group">
+                            <label class="sim-label" for="rango-d">Distancia del objeto (dₒ) <output id="valor-d">150 cm</output></label>
+                            <input type="range" id="rango-d" min="10" max="380" value="150">
+                        </div>
+
+                        <div class="sim-group">
+                            <label class="sim-label" for="rango-h">Altura del objeto (hₒ) <output id="valor-h">50 cm</output></label>
+                            <input type="range" id="rango-h" min="10" max="120" value="50">
+                        </div>
+
+                        <div class="sim-group" id="grupo-f">
+                            <label class="sim-label" for="rango-f">Distancia focal (|f|) <output id="valor-f">100 cm</output></label>
+                            <input type="range" id="rango-f" min="20" max="250" value="100">
+                        </div>
+
+                        <div class="sim-group">
+                            <span class="sim-label">Rayos notables</span>
+                            <label class="sim-check"><input type="checkbox" id="ver-r1" checked><i class="dot r1"></i> Rayo paralelo</label>
+                            <label class="sim-check"><input type="checkbox" id="ver-r2" checked><i class="dot r2"></i> <span id="nombre-r2">Rayo por el centro óptico</span></label>
+                            <label class="sim-check"><input type="checkbox" id="ver-r3" checked><i class="dot r3"></i> Rayo focal</label>
+                        </div>
+
+                        <div class="sim-group">
+                            <span class="sim-label">Vista</span>
+                            <label class="sim-check"><input type="checkbox" id="ver-animacion" checked> Animar la luz</label>
+                            <label class="sim-check"><input type="checkbox" id="ver-medidas" checked> Mostrar medidas</label>
+                        </div>
+
+                        <p class="sim-tip">Tip: arrastra la punta del objeto o los focos (F) directamente en el dibujo.</p>
+                    </aside>
+
+                    <!-- Escenario -->
+                    <div class="sim-stage">
+                        <div class="sim-canvas-wrap" id="contenedor-lienzo">
+                            <canvas id="lienzo"></canvas>
+                        </div>
+
+                        <div class="sim-legend">
+                            <span><i class="dot objeto"></i> Objeto</span>
+                            <span><i class="dot imagen"></i> Imagen</span>
+                            <span><i class="linea-virtual"></i> Prolongación (imagen virtual)</span>
+                        </div>
+
+                        <!-- Resultados -->
+                        <div class="sim-results">
+                            <div class="sim-chip"><span>Tipo</span><strong id="res-tipo">Real</strong></div>
+                            <div class="sim-chip"><span>Orientación</span><strong id="res-orientacion">Invertida</strong></div>
+                            <div class="sim-chip"><span>Tamaño</span><strong id="res-tamano">Mayor</strong></div>
+                            <div class="sim-chip"><span>Distancia imagen (dᵢ)</span><strong id="res-di">300 cm</strong></div>
+                            <div class="sim-chip"><span>Aumento (m)</span><strong id="res-m">-2,00</strong></div>
+                        </div>
+                        <p class="sim-ecuacion" id="ecuacion"></p>
+
+                        <!-- Modo desafío -->
+                        <div class="sim-desafio" id="panel-desafio" hidden>
+                            <h3>Desafío: predice la imagen antes de verla</h3>
+                            <div class="sim-pregunta" data-clave="tipo">
+                                <span>Tipo:</span>
+                                <button data-valor="Real">Real</button>
+                                <button data-valor="Virtual">Virtual</button>
+                            </div>
+                            <div class="sim-pregunta" data-clave="orientacion">
+                                <span>Orientación:</span>
+                                <button data-valor="Derecha">Derecha</button>
+                                <button data-valor="Invertida">Invertida</button>
+                            </div>
+                            <div class="sim-pregunta" data-clave="tamano">
+                                <span>Tamaño:</span>
+                                <button data-valor="Mayor">Mayor</button>
+                                <button data-valor="Menor">Menor</button>
+                                <button data-valor="Igual">Igual</button>
+                            </div>
+                            <div class="sim-desafio-acciones">
+                                <button class="btn-principal" id="btn-comprobar">Comprobar</button>
+                                <button class="btn-secundario" id="btn-nuevo">Nuevo desafío</button>
+                                <span class="sim-puntaje" id="puntaje">Aciertos: 0 de 0</span>
+                            </div>
+                            <p class="sim-feedback" id="feedback"></p>
+                        </div>
+
+                        <div class="sim-acciones">
+                            <button class="btn-principal" id="btn-desafio">Modo desafío</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Situaciones reales -->
+                <div class="sim-situaciones">
+                    <h3>Situaciones reales</h3>
+                    <div class="sim-situaciones-botones" id="situaciones">
+                        <button data-caso="lupa">Lupa</button>
+                        <button data-caso="camara">Cámara fotográfica</button>
+                        <button data-caso="proyector">Proyector</button>
+                        <button data-caso="retrovisor">Retrovisor de auto</button>
+                        <button data-caso="maquillaje">Espejo de maquillaje</button>
+                        <button data-caso="miopia">Lentes para miopía</button>
+                    </div>
+                    <p class="sim-situacion-texto" id="texto-situacion">Elige una situación para ver cómo se usa cada instrumento en la vida diaria.</p>
+                </div>
+            </section>
+
+            <!-- PREGUNTAS -->
+            <section class="explora">
+                <h2>Para explorar</h2>
+                <ol>
+                    <li>Con la lente convergente, acerca el objeto hasta que pase el foco F. ¿Qué le ocurre a la imagen?</li>
+                    <li>¿En qué posición del objeto la imagen tiene el mismo tamaño que el objeto? Compara esa distancia con la distancia focal.</li>
+                    <li>¿Puede una lente divergente o un espejo convexo formar una imagen real? Prueba distintas posiciones y explica.</li>
+                    <li>¿Por qué los retrovisores de los autos usan espejos convexos y no planos?</li>
+                </ol>
+            </section>
+
+        </div>
+    </main>
+
+    <script src="../../../js/objetivo.js"></script>
+    <script src="simulador.js"></script>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div>
+                <p class="footer-school">Liceo Bicentenario Padre Alberto Hurtado</p>
+                <p class="footer-copy">Laboratorio Virtual de Ciencias Exactas · 2026</p>
+            </div>
+            <div class="footer-logos">
+                <img src="../../../img/slep.jpeg" alt="SLEP" class="partner-logo">
+                <img src="../../../img/sna.jpeg" alt="SNA" class="partner-logo">
+                <img src="../../../img/fc.jpeg" alt="Collahuasi" class="partner-logo">
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

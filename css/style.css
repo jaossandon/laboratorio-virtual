@@ -1,0 +1,453 @@
+/* style.css */
+:root {
+    --bg-color: #f4f6f8;
+    --card-bg: #ffffff;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --text-light: #94a3b8;
+    --border-color: #e2e8f0;
+    
+    --color-no-metal: #10b981; 
+    --color-gas-noble: #0ea5e9;
+    --color-alcalino: #f97316; 
+    --color-alcalinoterreo: #f59e0b;
+    --color-metaloide: #8b5cf6; 
+    --color-halogeno: #ef4444;
+    --color-transicion: #eab308;
+    --color-post-transicion: #06b6d4;
+    --color-lantanido: #ec4899;
+    --color-actinido: #d946ef;
+}
+
+.top-bar {
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.school-logo {
+    height: 42px;
+    width: auto;
+    object-fit: contain;
+}
+
+.header-titles h1 {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: -0.3px;
+}
+
+.subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.controls-container {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    background: #f1f5f9;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 6px 12px;
+    gap: 8px;
+    width: 240px;
+    transition: all 0.2s;
+}
+
+.search-box:focus-within {
+    border-color: #3b82f6;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.search-box input {
+    border: none;
+    background: transparent;
+    outline: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    width: 100%;
+    color: var(--text-main);
+}
+
+.filter-dropdown select {
+    background: #f1f5f9;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--text-main);
+    outline: none;
+    cursor: pointer;
+}
+
+.main-layout {
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    overflow-x: auto;
+}
+
+#tabla-periodica {
+    display: grid;
+    grid-template-columns: repeat(18, minmax(0, 1fr));
+    grid-template-rows: repeat(10, 86px);
+    gap: 6px;
+    width: 100%;
+    max-width: 1326px;
+}
+
+.elemento {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+    border-top: 4px solid transparent;
+}
+
+.elemento:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    z-index: 2;
+}
+
+.elemento.dimmed {
+    opacity: 0.2;
+    transform: none !important;
+}
+
+.numero {
+    position: absolute;
+    top: 4px;
+    left: 6px;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.simbolo {
+    margin-top: 18px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-main);
+    line-height: 1;
+}
+
+.nombre {
+    text-align: center;
+    font-size: 8.5px;
+    font-weight: 400;
+    color: var(--text-muted);
+    margin-top: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 2px;
+}
+
+.masa {
+    text-align: center;
+    font-size: 8.5px;
+    color: var(--text-light);
+    position: absolute;
+    bottom: 5px;
+    width: 100%;
+}
+
+/* Clases de familia */
+.no-metal { border-top-color: var(--color-no-metal); }
+.gas-noble { border-top-color: var(--color-gas-noble); }
+.alcalino { border-top-color: var(--color-alcalino); }
+.alcalinoterreo { border-top-color: var(--color-alcalinoterreo); }
+.metaloide { border-top-color: var(--color-metaloide); }
+.halogeno { border-top-color: var(--color-halogeno); }
+.transicion { border-top-color: var(--color-transicion); }
+.post-transicion { border-top-color: var(--color-post-transicion); }
+.lantanido { border-top-color: var(--color-lantanido); }
+.actinido { border-top-color: var(--color-actinido); }
+
+/* Panel Lateral (Inspector) */
+.inspector-panel {
+    position: fixed;
+    top: 0;
+    right: -420px;
+    width: 380px;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(16px);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+    z-index: 200;
+    transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    box-sizing: border-box;
+    border-left: 1px solid var(--border-color);
+}
+
+.inspector-panel.active {
+    right: 0;
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #f1f5f9;
+    border: none;
+    font-size: 20px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-main);
+    transition: background 0.2s;
+}
+
+.close-btn:hover {
+    background: #e2e8f0;
+}
+
+.inspector-header {
+    margin-top: 10px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 20px;
+}
+
+.badge-z {
+    background: #f1f5f9;
+    color: var(--text-muted);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+.inspector-header h2 {
+    font-size: 24px;
+    margin: 10px 0 2px 0;
+}
+
+.symbol-sub {
+    font-size: 14px;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin: 0;
+}
+
+.inspector-body {
+    margin-top: 20px;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.data-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.data-card {
+    background: #f8fafc;
+    border: 1px solid var(--border-color);
+    padding: 12px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.data-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.data-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-top: 4px;
+}
+
+.section-container h3 {
+    font-size: 15px;
+    margin: 0 0 6px 0;
+}
+
+.section-desc {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin: 0 0 16px 0;
+    line-height: 1.4;
+}
+
+.isotopos-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.btn-isotopo {
+    background: #f8fafc;
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    padding: 12px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s;
+}
+
+.btn-isotopo:hover {
+    background: #eff6ff;
+    border-color: #3b82f6;
+    color: #1d4ed8;
+}
+
+/* Pantalla Completa 3D */
+.canvas-fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle at center, #ffffff 0%, #e2e8f0 100%);
+    z-index: 300;
+    display: none;
+}
+
+.btn-back {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    padding: 14px 24px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s;
+    z-index: 310;
+}
+
+.btn-back:hover {
+    background: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.simulation-info {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    padding: 24px 36px;
+    border-radius: 16px;
+    color: var(--text-main);
+    z-index: 310;
+    pointer-events: none;
+}
+
+.simulation-info h2 {
+    font-size: 42px;
+    margin: 0 0 12px 0;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+.simulation-info p {
+    font-size: 20px;
+    color: var(--text-main);
+    margin: 0;
+    font-weight: 600;
+    display: flex;
+    gap: 24px;
+}
+
+.particle-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.p-dot { color: #ef4444; font-size: 24px; }
+.n-dot { color: #3b82f6; font-size: 24px; }
+.e-dot { color: #eab308; font-size: 24px; }
+
+/* OPTIMIZACIÓN MÓVIL */
+@media (max-width: 768px) {
+    .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        padding: 15px;
+    }
+    .controls-container { flex-direction: column; width: 100%; }
+    .search-box, .filter-dropdown select { width: 100%; box-sizing: border-box; }
+    .main-layout { padding: 15px; justify-content: flex-start; }
+    .inspector-panel { width: 100%; right: -100%; }
+    .simulation-info { left: 15px; bottom: 15px; right: 15px; padding: 15px; border-radius: 12px; }
+    .simulation-info h2 { font-size: 24px; margin-bottom: 8px; }
+    .simulation-info p { font-size: 15px; flex-direction: column; gap: 8px; }
+    .particle-badge { font-size: 14px; }
+    .btn-back { top: 15px; left: 15px; padding: 10px 16px; font-size: 14px; }
+
+    /* Tabla: mantiene su forma y se desliza hacia los lados con el dedo */
+    .main-layout { -webkit-overflow-scrolling: touch; }
+    .table-wrapper { min-width: 900px; }
+    #tabla-periodica { min-width: 900px; grid-template-rows: repeat(10, 64px); gap: 4px; }
+    .elemento:hover { transform: none; }
+    .numero { font-size: 9px; top: 3px; left: 4px; }
+    .simbolo { margin-top: 15px; font-size: 18px; }
+    .nombre { font-size: 7.5px; margin-top: 3px; }
+    .masa { font-size: 7.5px; bottom: 3px; }
+}

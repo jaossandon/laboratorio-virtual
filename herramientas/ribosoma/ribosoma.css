@@ -1,0 +1,511 @@
+/* =========================================
+   FÁBRICA DE PROTEÍNAS: EL RIBOSOMA EN 3D
+   ========================================= */
+
+.fab {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* --- Escena 3D --- */
+.fab-escena {
+    position: relative;
+}
+
+.fab-lienzo {
+    width: 100%;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #f8fafc;
+}
+
+.fab-lienzo canvas {
+    display: block;
+    touch-action: none;
+    cursor: grab;
+}
+
+.fab-ayuda {
+    position: absolute;
+    left: 12px;
+    bottom: 10px;
+    font-size: 0.75rem;
+    color: #64748b;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 4px 10px;
+    border-radius: 20px;
+    pointer-events: none;
+}
+
+/* --- Controles --- */
+.fab-controles {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.fab-btn {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: 1px solid #6B1C2F;
+    background: #6B1C2F;
+    color: #ffffff;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.fab-btn:hover {
+    background: #4A1220;
+}
+
+.fab-btn:disabled {
+    background: #e2e8f0;
+    border-color: #e2e8f0;
+    color: #64748b;
+    cursor: default;
+}
+
+.fab-btn.secundario {
+    background: #ffffff;
+    color: #6B1C2F;
+}
+
+.fab-btn.secundario:hover {
+    background: #f6efe0;
+}
+
+.fab-check {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.9rem;
+    color: #334155;
+    cursor: pointer;
+}
+
+.fab-check input {
+    accent-color: #6B1C2F;
+    width: 16px;
+    height: 16px;
+}
+
+.fab-puntaje {
+    margin-left: auto;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #8a6d14;
+}
+
+.fab-velocidad {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: #334155;
+}
+
+.fab-velocidad input {
+    width: 110px;
+    accent-color: #6B1C2F;
+    cursor: pointer;
+}
+
+.fab-velocidad output {
+    min-width: 36px;
+    font-weight: 700;
+    color: #6B1C2F;
+}
+
+/* --- Escribir tu propio ARNm --- */
+.fab-secuencia {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 16px;
+}
+
+.fab-secuencia label {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #475569;
+}
+
+.fab-fila {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.fab-fila input {
+    flex: 1;
+    min-width: 220px;
+    font-family: monospace;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    color: #1e293b;
+}
+
+.fab-fila input:focus {
+    outline: 2px solid #D4AF37;
+    border-color: #D4AF37;
+}
+
+.fab-nota {
+    margin: 0;
+    font-size: 0.88rem;
+    color: #64748b;
+    line-height: 1.5;
+}
+
+.fab-nota.error {
+    color: #b91c1c;
+}
+
+/* --- Textos --- */
+.fab-estado {
+    margin: 0;
+    min-height: 3.4em;
+    background: #fdfbf7;
+    border-left: 4px solid #D4AF37;
+    border-radius: 6px;
+    padding: 12px 16px;
+    color: #334155;
+    line-height: 1.6;
+}
+
+.fab-proteina {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.95rem;
+    color: #475569;
+}
+
+.fab-proteina strong {
+    color: #6B1C2F;
+    font-size: 1.05rem;
+    letter-spacing: 0.5px;
+}
+
+/* --- Leyenda --- */
+.fab-leyenda {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 0.85rem;
+    color: #475569;
+}
+
+.fab-leyenda span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.base {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.base.a { background: #10B981; }
+.base.u { background: #F59E0B; }
+.base.g { background: #8B5CF6; }
+.base.c { background: #0EA5E9; }
+
+.pieza {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+}
+
+.pieza.arnt {
+    background: #F3E3B5;
+    border: 1px solid #8a6d14;
+    border-radius: 4px;
+}
+
+.pieza.aa {
+    background: #6B1C2F;
+    border-radius: 50%;
+}
+
+@media (max-width: 700px) {
+    .fab { padding: 16px; }
+    .fab-puntaje { margin-left: 0; width: 100%; }
+}
+
+/* =========================================
+   INSTRUCCIONES Y MODO MUTACIÓN (paso 4)
+   ========================================= */
+
+/* --- Instrucciones --- */
+.fab-instrucciones {
+    background: #fdfbf7;
+    border: 1px solid #e9d9a6;
+    border-left: 4px solid #D4AF37;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+}
+
+.fab-instrucciones summary {
+    font-weight: 800;
+    color: #6B1C2F;
+    font-size: 1.05rem;
+    cursor: pointer;
+}
+
+.fab-instrucciones summary span {
+    font-weight: 500;
+    font-size: 0.8rem;
+    color: #8a6d14;
+}
+
+.fab-instrucciones ol {
+    margin: 12px 0 0 0;
+    padding-left: 22px;
+    color: #334155;
+    line-height: 1.6;
+}
+
+.fab-instrucciones li {
+    margin-bottom: 6px;
+}
+
+/* --- Modo mutación --- */
+.mut {
+    margin-top: 24px;
+}
+
+.mut-titulo {
+    margin: 0;
+    color: #6B1C2F;
+    font-size: 1.3rem;
+}
+
+.mut-intro {
+    margin: 0;
+    color: #475569;
+    line-height: 1.6;
+}
+
+.mut-pasos {
+    margin: 0;
+    padding-left: 22px;
+    color: #334155;
+    line-height: 1.6;
+}
+
+.mut-secuencia {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 14px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+}
+
+.mut-grupo {
+    display: flex;
+    gap: 3px;
+    padding: 4px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    background: #ffffff;
+}
+
+.mut-grupo.inicio { border-color: #D4AF37; }
+.mut-grupo.termino { border-color: #94a3b8; }
+.mut-grupo.fuera { opacity: 0.55; border-style: dashed; }
+
+.mut-letra {
+    width: 30px;
+    height: 34px;
+    border: none;
+    border-radius: 6px;
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: transform 0.15s;
+}
+
+.mut-letra:hover { transform: translateY(-2px); }
+.mut-letra.base-a { background: #10B981; }
+.mut-letra.base-u { background: #F59E0B; }
+.mut-letra.base-g { background: #8B5CF6; }
+.mut-letra.base-c { background: #0EA5E9; }
+
+.mut-letra.cambiada {
+    outline: 3px solid #DC2626;
+    outline-offset: 2px;
+}
+
+.mut-resultado:empty {
+    display: none;
+}
+
+.mut-resultado {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: #fdfbf7;
+    border-left: 4px solid #D4AF37;
+    border-radius: 6px;
+    padding: 14px 16px;
+}
+
+.mut-tipo {
+    margin: 0;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: #6B1C2F;
+}
+
+.mut-fila {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+}
+
+.mut-etq {
+    width: 70px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #475569;
+}
+
+.mut-chip {
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #334155;
+}
+
+.mut-chip.distinto {
+    background: #fee2e2;
+    border-color: #fca5a5;
+    color: #b91c1c;
+}
+
+.mut-chip.fin {
+    background: #e2e8f0;
+    color: #64748b;
+}
+
+.mut-explicacion,
+.mut-aviso {
+    margin: 0;
+    color: #334155;
+    line-height: 1.6;
+}
+
+.mut-aviso {
+    font-size: 0.9rem;
+    color: #8a6d14;
+}
+
+/* =========================================
+   LEYENDA DEL ADN (paso 5)
+   ========================================= */
+.base.t { background: #EF4444; }
+
+.pieza.polimerasa {
+    background: #99f6e4;
+    border: 1px solid #14B8A6;
+    border-radius: 50%;
+}
+
+/* =========================================
+   MUTACIÓN EN EL ADN (paso 6)
+   ========================================= */
+.mut-guia {
+    margin: 0 0 -6px 0;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #64748b;
+}
+
+.mut-grupo {
+    flex-direction: column;
+    gap: 4px;
+}
+
+.mut-hebra {
+    display: flex;
+    gap: 3px;
+}
+
+.mut-letra.base-t { background: #EF4444; }
+
+.mut-molde-letra {
+    width: 30px;
+    height: 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 0.78rem;
+    font-weight: 700;
+    opacity: 0.7;
+}
+
+.mut-molde-letra.base-a { background: #10B981; }
+.mut-molde-letra.base-t { background: #EF4444; }
+.mut-molde-letra.base-g { background: #8B5CF6; }
+.mut-molde-letra.base-c { background: #0EA5E9; }
+
+.mut-molde-letra.cambiada {
+    opacity: 1;
+    outline: 2px solid #DC2626;
+    outline-offset: 1px;
+}
+
+/* =========================================
+   CELULARES Y TABLETS (pantallas angostas)
+   ========================================= */
+@media (max-width: 600px) {
+    .fab-instrucciones { padding: 12px 14px; }
+    .fab-instrucciones ol { padding-left: 18px; }
+    .fab-controles .fab-btn { flex: 1 1 auto; }
+    .fab-estado { font-size: 0.95rem; }
+    .fab-ayuda { font-size: 0.7rem; }
+    .fab-fila .fab-btn { flex: 1 1 auto; }
+    .fab-leyenda { gap: 10px; font-size: 0.8rem; }
+    .mut-secuencia { padding: 10px; gap: 6px; }
+    .mut-letra { width: 26px; height: 32px; }
+    .mut-molde-letra { width: 26px; }
+    .mut-etq { width: 100%; }
+}
